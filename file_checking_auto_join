@@ -1,0 +1,10 @@
+blok3_unite = [] #new list to collect all blok3.dbf file
+dfs = {}
+count = 0
+for a in os.listdir(app_folder):
+  os.chdir(app_folder+"/"+a)
+  for j in [i for i in os.listdir(os.getcwd()) if "blok3.dbf" in i]: #I changed '.dbf' to 'blok3.dbf' to get specific dbf file
+    count=count+1 #I used count+1 to begin index with 1 instead 0
+    dfs[count] = (Dbf5(j)).to_dataframe() #convert blok3.dbf to pandas data frame by using simpledbf package
+    blok3_unite.append(dfs[count]) #append all pandas data frame into blok3_unite list
+    blok3_final = pd.concat(blok3_unite) #concat/join all pandas blok3.dbf data frame into single pandas dataset
