@@ -35,6 +35,7 @@ for x in set(daftar):
     print(hitung, x)
 ----------------------------------------------
 #menyatukan .dbf file dengan NAMA FILE yang SAMA dari semua folder
+blok3_final = []
 blok3_unite = []
 dfs = {}
 count = 0
