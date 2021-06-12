@@ -1,0 +1,47 @@
+#import package yang diperlukan
+import os
+import pandas as pd
+from simpledbf import Dbf5
+--------------------------------------------
+#jika package simpledbf belum terinstall, lakukan installasi dengan perintah berikut :
+pip install simpledbf
+--------------------------------------------
+#tentukan lokasi folder semua .dbf berada:
+app_folder = '/home/shohibul/KERJAAN/Analisis/SPP/'
+--------------------------------------------
+#mengetahui JUMLAH file tiap folder
+for i in os.listdir(app_folder):
+    os.chdir(app_folder+"/"+i)
+    print(i, len(os.listdir(os.getcwd())))
+---------------------------------------------
+#mengetahui nama-nama file yang berada di dalam setiap direktori (folder):
+for i in os.listdir(app_folder):
+    os.chdir(app_folder+"/"+i)
+    print(i,os.listdir(os.getcwd()))
+---------------------------------------------
+#mengetahui JENIS file yang ada di di setiap folder
+daftar_dbf = []
+for i in os.listdir(app_folder):
+    os.chdir(app_folder+"/"+i)
+    for a in os.listdir(os.getcwd()):
+        daftar_dbf.append(a)
+print(set(daftar_dbf))
+print(len(set(daftar_dbf)))
+----------------------------------------------
+#menampilkan NOMOR URUT setiap JENIS file yang berada di seluruh folder
+hitung = 0
+for x in set(daftar):
+    hitung = hitung + 1
+    print(hitung, x)
+----------------------------------------------
+#menyatukan .dbf file dengan NAMA FILE yang SAMA dari semua folder
+blok3_unite = []
+dfs = {}
+count = 0
+for a in os.listdir(app_folder):
+  os.chdir(app_folder+"/"+a)
+  for j in [i for i in os.listdir(os.getcwd()) if "blok3.dbf" in i]:
+    count=count+1  
+    dfs[count] = (Dbf5(j)).to_dataframe()
+    blok3_unite.append(dfs[count])
+    blok3_final = pd.concat(blok3_unite)
