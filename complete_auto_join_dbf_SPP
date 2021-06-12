@@ -45,3 +45,12 @@ for a in os.listdir(app_folder):
     dfs[count] = (Dbf5(j)).to_dataframe()
     blok3_unite.append(dfs[count])
     blok3_final = pd.concat(blok3_unite)
+----------------------------------------
+#tampikan info mengenai jumlah kolom dan baris dari dbf yang berhasil di gabung:
+blok3_final.info()
+-----------------------------------------------
+#tampilkan gambaran awal data yang sudah digabung:
+print(blok3_final)
+-----------------------------------------------
+#konversi ke dalam format excel:
+blok3_final.to_excel('blok3.xlsx')
