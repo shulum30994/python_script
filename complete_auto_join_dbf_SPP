@@ -30,7 +30,7 @@ print(len(set(daftar_dbf)))
 ----------------------------------------------
 #menampilkan NOMOR URUT setiap JENIS file yang berada di seluruh folder
 hitung = 0
-for x in set(daftar):
+for x in set(daftar_dbf):
     hitung = hitung + 1
     print(hitung, x)
 ----------------------------------------------
