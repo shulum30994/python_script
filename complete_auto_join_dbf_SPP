@@ -54,3 +54,9 @@ print(blok3_final)
 -----------------------------------------------
 #konversi ke dalam format excel:
 blok3_final.to_excel('blok3.xlsx')
+-----------------------------------------------
+#memilih kolom-kolom tertentu untuk disimpan ke excel
+kolom_terpilih=pd.DataFrame(blok3_final[['B3_K3','B3_K4','B3_K5']]) #huruf/karakter yang ada di dalam tanda petik {'} adalah nama-nama kolom yang akan dipilih
+-----------------------------------------------
+#menyimpan kolom_terpilih ke file excel
+kolom_terpilih.to_excel('nama_file_excel.xlsx')
