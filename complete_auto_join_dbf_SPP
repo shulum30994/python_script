@@ -35,28 +35,32 @@ for x in set(daftar_dbf):
     print(hitung, x)
 ----------------------------------------------
 #menyatukan .dbf file dengan NAMA FILE yang SAMA dari semua folder
-blok3_unite = []
+df_unite = []
 dfs = {}
 count = 0
 for a in os.listdir(app_folder):
   os.chdir(app_folder+"/"+a)
-  for j in [i for i in os.listdir(os.getcwd()) if "blok3.dbf" in i]:
+  for j in [i for i in os.listdir(os.getcwd()) if "blok1,4-6.dbf" in i]: #nama file yang ingin digabung adalah blok1,4-6.dbf
     count=count+1  
     dfs[count] = (Dbf5(j)).to_dataframe()
-    blok3_unite.append(dfs[count])
-    blok3_final = pd.concat(blok3_unite)
+    df_unite.append(dfs[count])
+    blok46_final = pd.concat(blok3_unite) #hasil akhir gabungan blok1,4-6.dbf
 ----------------------------------------
 #tampikan info mengenai jumlah kolom dan baris dari dbf yang berhasil di gabung:
-blok3_final.info()
+blok46_final.info()
 -----------------------------------------------
 #tampilkan gambaran awal data yang sudah digabung:
-print(blok3_final)
+print(blok46_finall)
 -----------------------------------------------
 #konversi ke dalam format excel:
-blok3_final.to_excel('blok3.xlsx')
+blok46_final.to_excel('blok46_final.xlsx')
 -----------------------------------------------
-#memilih kolom-kolom tertentu untuk disimpan ke excel
-kolom_terpilih=pd.DataFrame(blok3_final[['B3_K3','B3_K4','B3_K5']]) #huruf/karakter yang ada di dalam tanda petik {'} adalah nama-nama kolom yang akan dipilih
------------------------------------------------
-#menyimpan kolom_terpilih ke file excel
-kolom_terpilih.to_excel('nama_file_excel.xlsx')
+#memilih kolom-kolom tertentu dari beberapa data frame:
+kolom_terpilih1 = pd.DataFrame(blok46_final[['B3C_K11','B3C_K13','B6B_R1_K7']]) #kolom-kolom terpilih dari data frame ke-1
+kolom_terpilih2 = pd.DataFrame(blok1011_final[['B11B_R5_K2','B11B_R5_K3']]) #kolom-kolom terpilih dari data frame ke-2
+------------------------------------------------
+#menggabungkan data frame yang berisi kolom yang sudah terpilih menjadi satu data frame:
+hasil_gabung_dataframe = pd.concat([gabungan_kolom1,gabungan_kolom2],axis=1)
+--------------------------------------------------
+#menyimpan kolom_terpilih dari beberapa dataframe ke file excel
+hasil_gabung_dataframe.to_excel('nama_file_excel.xlsx')
