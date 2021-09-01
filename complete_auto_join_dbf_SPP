@@ -26,7 +26,7 @@ for i in os.listdir(app_folder):
     for a in os.listdir(os.getcwd()):
         daftar_dbf.append(a)
 print(set(daftar_dbf))
-print(len(set(daftar_dbf)))
+print('Jumlah JENIS File yang ada di folder SPP berdasarkan nama adalah sebanyak : '+str(len(set(daftar_dbf))))
 ----------------------------------------------
 #menampilkan NOMOR URUT setiap JENIS file yang berada di seluruh folder
 hitung = 0
