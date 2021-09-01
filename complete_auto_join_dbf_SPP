@@ -44,7 +44,7 @@ for a in os.listdir(app_folder):
     count=count+1  
     dfs[count] = (Dbf5(j)).to_dataframe()
     df_unite.append(dfs[count])
-    blok46_final = pd.concat(blok3_unite) #hasil akhir gabungan blok1,4-6.dbf
+    blok46_final = pd.concat(df_unite) #hasil akhir gabungan blok1,4-6.dbf
 ----------------------------------------
 #tampikan info mengenai jumlah kolom dan baris dari dbf yang berhasil di gabung:
 blok46_final.info()
