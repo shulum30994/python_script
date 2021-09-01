@@ -28,6 +28,12 @@ for i in os.listdir(app_folder):
 print(set(daftar_dbf))
 print('Jumlah JENIS File yang ada di folder SPP berdasarkan nama adalah sebanyak : '+str(len(set(daftar_dbf))))
 ----------------------------------------------
+#mengetahui jumlah kolom dari SATU file dbf:
+file_blok4 = Dbf5('/home/shohibul/KERJAAN/Analisis/SPP/1200/blok1,4-6.dbf').to_dataframe()
+file_blok4.info()
+for col_names in file_blok4.columns:
+    print(col_names)
+----------------------------------------------
 #menampilkan NOMOR URUT setiap JENIS file yang berada di seluruh folder
 hitung = 0
 for x in set(daftar_dbf):
