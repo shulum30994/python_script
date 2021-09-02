@@ -56,7 +56,7 @@ for a in os.listdir(app_folder):
 blok46_final.info()
 -----------------------------------------------
 #tampilkan gambaran awal data yang sudah digabung:
-print(blok46_finall)
+print(blok46_final.head())
 -----------------------------------------------
 #konversi ke dalam format excel:
 blok46_final.to_excel('blok46_final.xlsx')
