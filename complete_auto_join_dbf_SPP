@@ -1,10 +1,10 @@
+#install package simpledbf
+conda install simpledbf
+--------------------------------------------
 #import package yang diperlukan
 import os
 import pandas as pd
 from simpledbf import Dbf5
---------------------------------------------
-#jika package simpledbf belum terinstall, lakukan installasi dengan perintah berikut :
-pip install simpledbf
 --------------------------------------------
 #tentukan lokasi folder semua .dbf berada:
 app_folder = '/home/shohibul/KERJAAN/Analisis/SPP/'
