@@ -62,6 +62,7 @@ print(blok8_final.head())
 -----------------------------------------------
 #konversi ke dalam format excel:
 blok8_final.to_excel('blok46_final.xlsx')
+blok8_final.to_excel(r"c:\Users\Administrator\Documents\blok8_final.xlsx") #jika direktori/folder belum ditentukan
 -----------------------------------------------
 #memilih kolom-kolom tertentu dari beberapa data frame:
 kolom_terpilih1 = pd.DataFrame(blok46_final[['B3C_K11','B3C_K13','B6B_R1_K7']]) #kolom-kolom terpilih dari data frame ke-1
