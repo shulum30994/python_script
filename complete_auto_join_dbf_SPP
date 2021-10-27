@@ -1,5 +1,6 @@
 #install package simpledbf
 conda install simpledbf
+pip install simpledbf
 --------------------------------------------
 #import package yang diperlukan
 import os
@@ -7,7 +8,8 @@ import pandas as pd
 from simpledbf import Dbf5
 --------------------------------------------
 #tentukan lokasi folder semua .dbf berada:
-app_folder = '/home/shohibul/KERJAAN/Analisis/SPP/'
+app_folder = '/home/shohibul/KERJAAN/Analisis/SPP/' #Linux
+app_folder = r'C:\Users\Administrator\Documents\STU' #Windows
 --------------------------------------------
 #mengetahui JUMLAH file tiap folder
 for i in os.listdir(app_folder):
@@ -28,17 +30,17 @@ for i in os.listdir(app_folder):
 print(set(daftar_dbf))
 print('Jumlah JENIS File yang ada di folder SPP berdasarkan nama adalah sebanyak : '+str(len(set(daftar_dbf))))
 ----------------------------------------------
-#mengetahui jumlah kolom dari SATU file dbf:
-file_blok4 = Dbf5('/home/shohibul/KERJAAN/Analisis/SPP/1200/blok1,4-6.dbf').to_dataframe()
-file_blok4.info()
-for col_names in file_blok4.columns:
-    print(col_names)
-----------------------------------------------
 #menampilkan NOMOR URUT setiap JENIS file yang berada di seluruh folder
 hitung = 0
 for x in set(daftar_dbf):
     hitung = hitung + 1
     print(hitung, x)
+----------------------------------------------
+#mengetahui jumlah kolom dari SATU file dbf:
+file_blok8 = Dbf5(r"c:\Users\Administrator\Documents\STU\folder_2\stu blok 8 contoh.dbf").to_dataframe()
+file_blok8.info()
+for col_names in file_blok8.columns:
+    print(col_names)
 ----------------------------------------------
 #menyatukan .dbf file dengan NAMA FILE yang SAMA dari semua folder
 df_unite = []
@@ -46,20 +48,20 @@ dfs = {}
 count = 0
 for a in os.listdir(app_folder):
   os.chdir(app_folder+"/"+a)
-  for j in [i for i in os.listdir(os.getcwd()) if "blok1,4-6.dbf" in i]: #nama file yang ingin digabung adalah blok1,4-6.dbf
+  for j in [i for i in os.listdir(os.getcwd()) if "stu blok 8 contoh" in i]: #nama file yang ingin digabung adalah blok1,4-6.dbf
     count=count+1  
     dfs[count] = (Dbf5(j)).to_dataframe()
     df_unite.append(dfs[count])
-    blok46_final = pd.concat(df_unite) #hasil akhir gabungan blok1,4-6.dbf
+    blok8_final = pd.concat(df_unite) #hasil akhir gabungan blok1,4-6.dbf
 ----------------------------------------
 #tampikan info mengenai jumlah kolom dan baris dari dbf yang berhasil di gabung:
-blok46_final.info()
+blok8_final.info()
 -----------------------------------------------
 #tampilkan gambaran awal data yang sudah digabung:
-print(blok46_final.head())
+print(blok8_final.head())
 -----------------------------------------------
 #konversi ke dalam format excel:
-blok46_final.to_excel('blok46_final.xlsx')
+blok8_final.to_excel('blok46_final.xlsx')
 -----------------------------------------------
 #memilih kolom-kolom tertentu dari beberapa data frame:
 kolom_terpilih1 = pd.DataFrame(blok46_final[['B3C_K11','B3C_K13','B6B_R1_K7']]) #kolom-kolom terpilih dari data frame ke-1
