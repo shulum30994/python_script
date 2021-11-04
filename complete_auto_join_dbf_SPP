@@ -8,7 +8,7 @@ import pandas as pd
 from simpledbf import Dbf5
 --------------------------------------------
 #tentukan lokasi folder semua .dbf berada:
-app_folder = '/home/shohibul/KERJAAN/Analisis/SPP/' #Linux
+app_folder = '/home/shohibul/KERJAAN/Analisis/STU/' #Linux
 app_folder = r'C:\Users\Administrator\Documents\STU' #Windows
 --------------------------------------------
 #mengetahui JUMLAH file tiap folder
