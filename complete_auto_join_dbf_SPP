@@ -36,7 +36,7 @@ for x in set(daftar_dbf):
     hitung = hitung + 1
     print(hitung, x)
 ----------------------------------------------
-#mengetahui jumlah kolom dari SATU file dbf:
+#mengetahui jumlah kolom dalam SATU file dbf:
 file_blok8 = Dbf5(r"c:\Users\Administrator\Documents\STU\folder_2\stu blok 8 contoh.dbf").to_dataframe()
 file_blok8.info()
 for col_names in file_blok8.columns:
@@ -48,11 +48,11 @@ dfs = {}
 count = 0
 for a in os.listdir(app_folder):
   os.chdir(app_folder+"/"+a)
-  for j in [i for i in os.listdir(os.getcwd()) if "stu blok 8 contoh" in i]: #nama file yang ingin digabung adalah blok1,4-6.dbf
+  for j in [i for i in os.listdir(os.getcwd()) if "stu blok 8 contoh" in i]: #nama file yang ingin digabung adalah stu blok 8 contoh
     count=count+1  
     dfs[count] = (Dbf5(j)).to_dataframe()
     df_unite.append(dfs[count])
-    blok8_final = pd.concat(df_unite) #hasil akhir gabungan blok1,4-6.dbf
+    blok8_final = pd.concat(df_unite) #hasil akhir gabungan stu blok 8 contoh
 ----------------------------------------
 #tampikan info mengenai jumlah kolom dan baris dari dbf yang berhasil di gabung:
 blok8_final.info()
