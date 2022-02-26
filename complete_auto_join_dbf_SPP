@@ -73,3 +73,13 @@ hasil_gabung_dataframe = pd.concat([gabungan_kolom1,gabungan_kolom2],axis=1)
 --------------------------------------------------
 #menyimpan kolom_terpilih dari beberapa dataframe ke file excel
 hasil_gabung_dataframe.to_excel('nama_file_excel.xlsx')
+--------------------------------------------------
+#MEMBUAT HISTOGRAM SEDERHANA
+pip install seaborn
+import seaborn as sns
+sns.displot(file_146['B3C_K13'])
+plt.xlim(-0, 70000) #dengan limit sumbu x
+plt.ylim(0, 400) #dengan limit sumbu y
+--------------------------------------------------
+#DESKRIPSI STATISTIK DASAR
+file_146.describe() #nama_data_frame.describe()
