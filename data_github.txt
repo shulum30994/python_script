@@ -1,1 +1,0 @@
-https://raw.githubusercontent.com/shulum30994/python_script/main/identitas.csv
