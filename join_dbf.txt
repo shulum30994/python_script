@@ -1,0 +1,73 @@
+#install package simpledbf
+conda install simpledbf
+pip install simpledbf
+--------------------------------------------
+#import package yang diperlukan
+import os
+import pandas as pd
+from simpledbf import Dbf5
+--------------------------------------------
+#tentukan lokasi folder semua .dbf berada:
+app_folder = '/home/shohibul/KERJAAN/Analisis/STU/' #Linux
+app_folder = r'C:\Users\Administrator\Documents\STU' #Windows
+--------------------------------------------
+#mengetahui JUMLAH file tiap folder
+for i in os.listdir(app_folder):
+    os.chdir(app_folder+"/"+i)
+    print(i, len(os.listdir(os.getcwd())))
+---------------------------------------------
+#mengetahui nama-nama file yang berada di dalam setiap direktori (folder):
+for i in os.listdir(app_folder):
+    os.chdir(app_folder+"/"+i)
+    print(i,os.listdir(os.getcwd()))
+---------------------------------------------
+#mengetahui JENIS dan JUMLAH JENIS file yang ada di di setiap folder:
+daftar_dbf = []
+for i in os.listdir(app_folder):
+    os.chdir(app_folder+"/"+i)
+    for a in os.listdir(os.getcwd()):
+        daftar_dbf.append(a)
+print(set(daftar_dbf))
+print('Jumlah JENIS File yang ada di folder SPP berdasarkan nama adalah sebanyak : '+str(len(set(daftar_dbf))))
+----------------------------------------------
+#menampilkan NOMOR URUT setiap JENIS file yang berada di seluruh folder
+hitung = 0
+for x in set(daftar_dbf):
+    hitung = hitung + 1
+    print(hitung, x)
+----------------------------------------------
+#mengetahui jumlah kolom dalam SATU file dbf:
+file_blok8 = Dbf5(r"c:\Users\Administrator\Documents\STU\folder_2\stu blok 8 contoh.dbf").to_dataframe()
+file_blok8.info()
+for col_names in file_blok8.columns:
+    print(col_names)
+----------------------------------------------
+#menyatukan .dbf file dengan NAMA FILE yang SAMA dari semua folder
+df_unite = []
+dfs = {}
+count = 0
+for a in os.listdir(app_folder):
+  os.chdir(app_folder+"/"+a)
+  for j in [i for i in os.listdir(os.getcwd()) if "stu blok 8 contoh" in i]: #nama file yang ingin digabung adalah stu blok 8 contoh
+    count=count+1  
+    dfs[count] = (Dbf5(j)).to_dataframe()
+    df_unite.append(dfs[count])
+    blok8_final = pd.concat(df_unite) #hasil akhir gabungan stu blok 8 contoh
+----------------------------------------
+#tampikan info mengenai jumlah kolom dan baris dari dbf yang berhasil di gabung:
+blok8_final.info()
+-----------------------------------------------
+#tampilkan gambaran awal data yang sudah digabung:
+print(blok8_final.head())
+-----------------------------------------------
+#memilih kolom-kolom tertentu dari beberapa data frame:
+kolom_terpilih1 = pd.DataFrame(blok46_final[['ID_RUTA','B3C_K11','B3C_K13','B6B_R1_K7']]) #kolom-kolom terpilih (dan key 'ID_RUTA') dari data frame ke-1
+kolom_terpilih2 = pd.DataFrame(blok1011_final[[''ID_RUTA'','B11B_R5_K2','B11B_R5_K3']]) #kolom-kolom terpilih (dan key 'ID_RUTA') dari data frame ke-2
+----------------------------------------------
+#menggabungkan data frame yang berisi kolom yang sudah terpilih menjadi satu data frame:
+hasil_gabung_dataframe = pd.merge(kolom_terpilih1,kolom_terpilih2,on='ID_RUTA')
+----------------------------------------------
+#konversi ke dalam format .csv:
+blok8_final.to_csv('blok46_final.csv')
+blok8_final.to_csv(r"c:\Users\Administrator\Documents\blok8_final.csv") #jika direktori/folder belum ditentukan
+
