@@ -1,11 +1,14 @@
 #install package simpledbf
 conda install simpledbf
 pip install simpledbf
+conda install dbfread
+pip install dbfread
 --------------------------------------------
 #import package yang diperlukan
 import os
 import pandas as pd
 from simpledbf import Dbf5
+from dbfread import DBF # digunakan jika dimpledbf tidak bisa diinstall
 --------------------------------------------
 #tentukan lokasi folder semua .dbf berada:
 app_folder = '/home/shohibul/KERJAAN/Analisis/STU/' #Linux
@@ -53,7 +56,20 @@ for a in os.listdir(app_folder):
     dfs[count] = (Dbf5(j)).to_dataframe()
     df_unite.append(dfs[count])
     blok8_final = pd.concat(df_unite) #hasil akhir gabungan stu blok 8 contoh
-----------------------------------------
+-------------------------------------------------------------------------------
+#menyatukan .dbf file dengan NAMA FILE yang SAMA dari semua folder menggunakan package dbfread
+df_unite = []
+dfs = {}
+count = 0
+for a in os.listdir(app_folder):
+  os.chdir(app_folder+"/"+a)
+  for j in [i for i in os.listdir(os.getcwd()) if "stu blok 8 contoh" in i]: #nama file yang ingin digabung adalah stu blok 8 contoh
+    count=count+1  
+    dfs[count] = (DBF(j))
+    frame = pd.DataFrame(iter(dfs[count]))
+    df_unite.append(frame)
+    blok8_final = pd.concat(df_unite) #hasil akhir gabungan stu blok 8 contoh
+------------------------------------------------------------------------------
 #tampikan info mengenai jumlah kolom dan baris dari dbf yang berhasil di gabung:
 blok8_final.info()
 -----------------------------------------------
